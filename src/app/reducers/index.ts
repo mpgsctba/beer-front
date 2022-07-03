@@ -17,6 +17,7 @@ export interface Filter {
     page: number;
     itemsPerPage: number;
     filter?: string;
+    favorite?: boolean;
 }
 
 export interface Loadable {
@@ -25,7 +26,7 @@ export interface Loadable {
 
 export interface Page {
     content: any[];
-    totalItems: number;
+    totalElements: number;
     number: number;
     size: number;
     totalPages: number;

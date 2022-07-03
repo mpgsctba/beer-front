@@ -13,12 +13,16 @@ import {StoreModule} from '@ngrx/store';
 import {BeerEffects} from './reducers/beer/beer.effects';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CardBeerComponent
+    CardBeerComponent,
+    PaginationComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,

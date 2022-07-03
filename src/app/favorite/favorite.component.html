@@ -1,0 +1,11 @@
+<h2 class="center">Favorites page</h2>
+
+<div class="row item">
+  <app-card-beer [beer]="item" *ngFor="let item of (state | async).content" class="col-xs-12 col-sm-12 col-md-12 col-lg-6"></app-card-beer>
+</div>
+
+<app-pagination *ngIf="(state | async).content.length > 0" [page]="(state | async)" (currentPage)="changePage($event)"></app-pagination>
+
+<div class="body" *ngIf="(state | async).content.length === 0">
+  <h4>No items yet added on favorites.</h4>
+</div>

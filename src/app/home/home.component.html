@@ -1,10 +1,6 @@
-<div class="row">
+<h2 class="center">Home page</h2>
+<div class="row item">
   <app-card-beer [beer]="item" *ngFor="let item of (state | async).content" class="col-xs-12 col-sm-12 col-md-12 col-lg-6"></app-card-beer>
 </div>
-<div>
-  <h5 *ngIf="(state | async)?.content.length > 0"
-      class="items-size">{{'Total de x beers'}}</h5>
-  <h5 *ngIf="(state | async)?.content.length === 0">
-    No beers found!
-  </h5>
-</div>
+
+<app-pagination [page]="(state | async)" (currentPage)="changePage($event)"></app-pagination>

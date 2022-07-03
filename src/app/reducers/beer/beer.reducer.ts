@@ -14,7 +14,7 @@ export const offerInitialState: BeerState = {
 export const beerReducer = createReducer(
     offerInitialState,
     on(loadBeers, (state) => ({...state, loading: true})),
-    on(loadedBeers, (state, data) => ({...state, content: data.content, totalPages: data.totalItems,
-      totalElements: data.totalItems, size: data.size, number: data.size, loading: false})),
+    on(loadedBeers, (state, data) => ({...state, content: data.content, totalPages: data.totalPages,
+      totalElements: data.totalElements, size: data.size, number: (data.number + 1), loading: false})),
     on(failedBeers, (state) => ({...state, loading: false})),
 );

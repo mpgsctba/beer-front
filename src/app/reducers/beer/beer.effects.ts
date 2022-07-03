@@ -36,6 +36,9 @@ export class BeerEffects {
     if (!!filter.filter) {
       params = params.append('name', filter.filter);
     }
+    if (!!filter.favorite) {
+      params = params.append('favorite', String(filter.favorite));
+    }
     return params;
   }
 }

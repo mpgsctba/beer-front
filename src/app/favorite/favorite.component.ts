@@ -1,19 +1,18 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Observable, Subject, Subscription} from 'rxjs';
+import {BeerState} from '../reducers/beer/beer.interface';
 import {Store} from '@ngrx/store';
 import * as froomRoot from '../reducers';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {Observable, Subject, Subscription} from 'rxjs';
-import {BeerState} from '../reducers/beer/beer.interface';
-import {debounceTime} from 'rxjs/operators';
 import {Filter} from '../reducers';
 import {loadBeers} from '../reducers/beer/beer.action';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-favorite',
+  templateUrl: './favorite.component.html',
+  styleUrls: ['./favorite.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class FavoriteComponent implements OnInit, OnDestroy {
 
   // filter fields
   page = 0;
@@ -23,15 +22,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   // state and subscriptions
   state: Observable<BeerState>;
   private subscription: Subscription = new Subscription();
-  private subject: Subject<string> = new Subject();
 
   constructor(private store: Store<froomRoot.State>, private loadingService: NgxSpinnerService) {
     this.state = store.select('beers');
     this.subscription = new Subscription();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -46,21 +40,17 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.loadingService.hide();
       }
     }));
-
-    // debounce time for filter
-    this.subscription.add(this.subject.pipe(
-      debounceTime(500)
-    ).subscribe(value => {
-      this.filter = value;
-      this.page = 0;
-      this.applyFilter();
-    }));
   }
 
   changePage = (page) => {
     this.page = page;
     this.applyFilter();
   }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
   /**
    * main method to dispatch load action with all params
@@ -69,7 +59,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     const filter = {
       page: this.page,
       itemsPerPage: this.itemsPerPage,
-      filter: this.filter
+      filter: this.filter,
+      favorite: true
     } as Filter;
 
     this.store.dispatch(loadBeers({filter}));
