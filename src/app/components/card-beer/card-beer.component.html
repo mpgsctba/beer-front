@@ -17,6 +17,7 @@
             <div class="card-text"><b>Attenuation Level: </b><i>{{beer.attenuation_level}}</i></div>
             <div class="card-text"><b>Volume: </b><i>{{beer.volume.value + ' ' + beer.volume.unit}}</i></div>
           </div>
+          <i *ngIf="beer.favorite" class="fa fa-heart fav-icon"></i>
         </div>
       </div>
     </div>

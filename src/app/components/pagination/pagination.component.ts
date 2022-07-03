@@ -21,6 +21,7 @@ export class PaginationComponent implements OnInit {
   page: Page;
 
   current = 1;
+
   @Output()
   currentPage: EventEmitter<number> = new EventEmitter<number>();
 
@@ -32,12 +33,13 @@ export class PaginationComponent implements OnInit {
   ngOnInit(): void {
 
     this.subscription.add(this.state.subscribe(state => {
-      this.current = state.number;
+      if (this.current !== state.number) {
+        this.current = state.number;
+      }
     }));
   }
 
   loadPage = (page) => {
-    console.log(page);
     this.currentPage.emit(page);
   }
 

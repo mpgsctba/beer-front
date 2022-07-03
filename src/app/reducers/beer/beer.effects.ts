@@ -44,7 +44,7 @@ export class BeerEffects {
   private buildHttpParams = (filter: Filter): HttpParams => {
     let params = new HttpParams();
     if (!!filter.page) {
-      params = params.append('page', filter.page.toString());
+      params = params.append('page', (filter.page - 1).toString());
     }
     if (!!filter.itemsPerPage) {
       params = params.append('itemsPerPage', filter.itemsPerPage.toString());

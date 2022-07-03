@@ -33,7 +33,6 @@ export class FavoriteComponent implements OnInit, OnDestroy {
     this.applyFilter();
 
     this.subscription.add(this.state.subscribe(state => {
-      console.log(state);
       if (state.loading) {
         this.loadingService.show();
       } else {

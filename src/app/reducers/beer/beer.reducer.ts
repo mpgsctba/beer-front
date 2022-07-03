@@ -8,7 +8,7 @@ export const offerInitialState: BeerState = {
     totalPages: 0,
     totalElements: 0,
     size: 0,
-    number: 0,
+    number: 1,
 };
 
 export const beerReducer = createReducer(
