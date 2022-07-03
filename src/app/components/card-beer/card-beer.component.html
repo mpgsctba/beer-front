@@ -28,7 +28,7 @@
           <p class="card-text">{{beer.description}}</p>
         </div>
         <div class="text-center">
-          <button class="btn btn-danger fav-button" type="button"><i class="fa fa-heart"></i> Add Favorite</button>
+          <button (click)="updateFavorite()" class="btn btn-danger fav-button" type="button"><i class="fa fa-heart"></i> {{!beer.favorite ? 'Add Favorite' : 'Remove Favorite'}}</button>
         </div>
       </div>
     </div>

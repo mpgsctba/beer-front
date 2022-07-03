@@ -15,6 +15,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,11 @@ import { FavoriteComponent } from './favorite/favorite.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: false,
+    }),
 
     // spinner
     NgxSpinnerModule,

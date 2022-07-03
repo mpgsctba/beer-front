@@ -5,12 +5,14 @@ import {catchError, map, mergeMap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {Filter, Page} from '..';
 import {urlBase} from 'src/environments/environment';
-import {BeerType, failedBeers, loadedBeers} from './beer.action';
+import {BeerType, changedFav, failedBeers, loadedBeers} from './beer.action';
+import {Beer} from './beer.interface';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class BeerEffects {
 
-  constructor(private actions$: Actions, private http: HttpClient) {
+  constructor(private actions$: Actions, private http: HttpClient, private toastService: ToastrService) {
   }
 
   loadBeers$ = createEffect(() => this.actions$.pipe(
@@ -19,6 +21,20 @@ export class BeerEffects {
         const params = this.buildHttpParams(action.filter);
         return this.http.get<Page>(urlBase + 'beers', {params}).pipe(
           map(result => loadedBeers(result)),
+          catchError((error) => of(failedBeers({error})))
+        );
+      }
+    )
+  ));
+
+  changeFav = createEffect(() => this.actions$.pipe(
+    ofType(BeerType.BEERS_CHANGE_FAV),
+    mergeMap((action: Beer ) => {
+        return this.http.patch<Beer>(urlBase + 'beers/' + action.id + '/favorite/' + !action.favorite , null).pipe(
+          map(result => {
+            this.toastService.success(result.favorite ? 'Beer ' + result.name + ' added to favorites' : 'Beer ' + result.name + ' removed from favorites');
+            return changedFav(result);
+          }),
           catchError((error) => of(failedBeers({error})))
         );
       }
