@@ -1,0 +1,36 @@
+<div class="image-flip cursor-pointer" >
+  <div class="mainflip flip-0">
+    <div class="frontside">
+      <div class="card">
+        <div class="card-horizontal">
+          <div class="img-square-wrapper col-xs-6 col-sm-5 col-md-4">
+            <img class="" src="{{beer.image_url}}" alt="Card image cap">
+          </div>
+          <div class="card-body col-xs-6 col-sm-7 col-md-8">
+            <h4 class="card-title">{{beer.name}}</h4>
+            <p class="tagline">{{beer.tagline}}</p>
+            <div class="card-text"><b>Alcohol by Volume: </b><i>{{beer.abv}}%</i></div>
+            <div class="card-text"><b>International Bitterness Units: </b><i>{{beer.ibu}}</i></div>
+            <div class="card-text"><b>European Brewery Convention: </b><i>{{beer.ebc}}</i></div>
+            <div class="card-text"><b>Standard Reference Method: </b><i>{{beer.srm}}</i></div>
+            <div class="card-text"><b>PH: </b><i>{{beer.ph}}</i></div>
+            <div class="card-text"><b>Attenuation Level: </b><i>{{beer.attenuation_level}}</i></div>
+            <div class="card-text"><b>Volume: </b><i>{{beer.volume.value + ' ' + beer.volume.unit}}</i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="backside">
+      <div class="card card-horizontal">
+        <div class="card-body col-xs-12">
+          <h4 class="card-title">{{beer.name}}</h4>
+          <p class="card-text">{{beer.description}}</p>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-danger fav-button" type="button"><i class="fa fa-heart"></i> Add Favorite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
