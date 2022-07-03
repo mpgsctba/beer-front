@@ -50,7 +50,7 @@ export class BeerEffects {
       params = params.append('itemsPerPage', filter.itemsPerPage.toString());
     }
     if (!!filter.filter) {
-      params = params.append('name', filter.filter);
+      params = params.append('filter', filter.filter);
     }
     if (!!filter.favorite) {
       params = params.append('favorite', String(filter.favorite));

@@ -1,4 +1,9 @@
 <h2 class="center">Home page</h2>
+
+<div class="form-group text-field">
+  <input class="form-control form-control-lg" type="text" placeholder="Filter by name or description" (keyup)="handleFilterChange($event)">
+</div>
+
 <div class="row item">
   <app-card-beer [beer]="item" *ngFor="let item of (state | async).content" class="col-xs-12 col-sm-12 col-md-12 col-lg-6"></app-card-beer>
 </div>

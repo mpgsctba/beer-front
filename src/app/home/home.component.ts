@@ -63,6 +63,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   /**
+   * handle with filter per name change
+   */
+  handleFilterChange = (event: Event) => {
+    const value = (event.target as HTMLInputElement).value;
+    this.subject.next(value);
+  }
+
+  /**
    * main method to dispatch load action with all params
    */
   private applyFilter = () => {
